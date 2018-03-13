@@ -1,3 +1,4 @@
+
 //VARIABLES
 var auctions = [];
 
@@ -14,6 +15,7 @@ function auctionObject(Title, Description, StartDate, EndDate){
   this.startDate = StartDate;
   this.endDate = EndDate;
 }
+
 
 //GET DATA FROM API
 async function getData(){
@@ -76,3 +78,8 @@ function updateView(){
 
     }
 }
+
+return{
+  getData:GetData,
+}
+})();
