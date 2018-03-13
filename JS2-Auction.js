@@ -30,7 +30,7 @@ async function FetchData(url){
   for (var i in data) {
     var auction = new auctionObject(data[i].Titel, data[i].Beskrivning, data[i].StartDatum, data[i].SlutDatum);
     auctions.push(auction);
-  } 
+  }
   updateView();
 }
 
@@ -78,5 +78,4 @@ function updateView(){
 
     }
 }
-
 
