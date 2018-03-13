@@ -1,3 +1,6 @@
+
+var GetInfo = (function(url){
+
 GetData();
 async function GetData(){
 
@@ -17,3 +20,12 @@ async function FetchData(url){
   let data = await promise.json();
   return data;
 }
+
+return{
+  getData:GetData,
+}
+})();
+
+export {GetInfo};
+
+console.log(GetInfo.getData);
