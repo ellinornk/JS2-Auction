@@ -5,7 +5,7 @@ async function GetData(){
 
   for (var parameter of myResponse){
     let myTextTag = document.createElement("p");
-    let text = parameter.Titel;
+    let text = parameter;
     let textNode = document.createTextNode(JSON.stringify(text));
     myTextTag.appendChild(textNode);
     document.body.appendChild(myTextTag);
