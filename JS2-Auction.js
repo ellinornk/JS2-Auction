@@ -78,7 +78,3 @@ function updateView(){
 
     }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 4b2c7923c659feea25b6f71948a5f131c35590cc
