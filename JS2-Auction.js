@@ -25,7 +25,3 @@ return{
   getData:GetData,
 }
 })();
-
-export {GetInfo};
-
-console.log(GetInfo.getData);
