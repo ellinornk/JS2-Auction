@@ -79,7 +79,4 @@ function updateView(){
     }
 }
 
-return{
-  getData:GetData,
-}
-})();
+
