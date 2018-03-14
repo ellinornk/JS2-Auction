@@ -9,26 +9,30 @@ function startApp(){
 }
 
 //CREATE AUCTION OBJECT
-function auctionObject(Title, Description, StartDate, EndDate){
+function auctionObject(Title, Description, StartDate, EndDate, AuctionId){
   this.title = Title;
   this.description = Description;
   this.startDate = StartDate;
   this.endDate = EndDate;
+  this.auctionId = AuctionId;
 }
-
 
 //GET DATA FROM API
 async function getData(){
   let myResponse = await FetchData("http://nackowskis.azurewebsites.net/api/auktion/500");
+}
+//ELLINORS KOMMANDE FUNKTION
+function newBid(id){
+ console.log(id);
 }
 
 //CLEAN THE DATA AND CREATE AUCTION OBJECTS FROM SOURCE
 async function FetchData(url){
   let promise = await fetch(url);
   let data = await promise.json();
-
+  console.log(data);
   for (var i in data) {
-    var auction = new auctionObject(data[i].Titel, data[i].Beskrivning, data[i].StartDatum, data[i].SlutDatum);
+    var auction = new auctionObject(data[i].Titel, data[i].Beskrivning, data[i].StartDatum, data[i].SlutDatum, data[i].AuktionID);
     auctions.push(auction);
   }
   updateView();
@@ -72,9 +76,10 @@ function updateView(){
       cardBody.appendChild(currentBid);
 
       var btnBid = document.createElement('a');
-      btnBid.className = 'btn btn-info';
+      btnBid.className = 'btn btn-success';
       btnBid.innerHTML = 'Lägg Bud';
       btnBid.style = 'color: white';
+      btnBid.setAttribute('onclick', 'newBid('+auctions[i].auctionId+');')
       cardBody.appendChild(btnBid);
 
       var endBid = document.createElement('div');
