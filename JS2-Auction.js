@@ -36,45 +36,51 @@ async function FetchData(url){
 
 //UPDATE THE VIEW
 function updateView(){
+  console.log(auctions);
     for(var i=0; i < auctions.length; i++){
-    var card = document.createElement('div');
-    card.className = 'card text-center';
-    var cardContainer = document.getElementById('cardContainer').appendChild(card);
+      var card = document.createElement('div');
+      card.className = 'card text-center';
+      var cardContainer = document.getElementById('cardContainer').appendChild(card);
 
-    var cardHeader = document.createElement('div');
-    cardHeader.className = 'card-header';
-    cardHeader.innerHTML = auctions[i].startDate;
-    card.appendChild(cardHeader);
+      var cardHeader = document.createElement('div');
+      cardHeader.className = 'card-header';
+      cardHeader.innerHTML = 'Startdatum: ' + auctions[i].startDate;
+      card.appendChild(cardHeader);
 
-    var cardBody = document.createElement('div');
-    cardBody.className = "card-body";
-    card.appendChild(cardBody);
+      var cardBody = document.createElement('div');
+      cardBody.className = "card-body";
+      card.appendChild(cardBody);
 
-    var cardTitle = document.createElement('h5');
-    cardTitle.className = 'card-title';
-    cardTitle.innerHTML = auctions[i].title;
-    cardBody.appendChild(cardTitle);
+      var cardTitle = document.createElement('h5');
+      cardTitle.className = 'card-title';
+      cardTitle.innerHTML = auctions[i].title;
+      cardBody.appendChild(cardTitle);
 
-    var description = document.createElement('p');
-    description.className = 'card-text';
-    description.innerHTML = auctions[i].description;
-    cardBody.appendChild(description);
+      var description = document.createElement('p');
+      description.className = 'card-text';
+      description.innerHTML = auctions[i].description;
+      cardBody.appendChild(description);
 
-    var currentBid = document.createElement('p');
-    currentBid.className = 'card-text';
-    currentBid.innerHTML = '2500:-';
-    cardBody.appendChild(currentBid);
+      var firstBid = document.createElement('p');
+      firstBid.className = 'card-text';
+      firstBid.innerHTML = 'Utropspris: 500:-';
+      cardBody.appendChild(firstBid);
 
-    var btnBid = document.createElement('a');
-    btnBid.className = 'btn btn-success';
-    btnBid.innerHTML = 'Lägg Bud';
-    btnBid.style = 'color: white';
-    cardBody.appendChild(btnBid);
+      var currentBid = document.createElement('p');
+      currentBid.className = 'card-text';
+      currentBid.innerHTML = 'Senaste bud: 2500:-';
+      cardBody.appendChild(currentBid);
 
-    var firstBid = document.createElement('div');
-    firstBid.className = 'card-footer text-muted';
-    firstBid.innerHTML = '500:-';
-    card.appendChild(firstBid);
+      var btnBid = document.createElement('a');
+      btnBid.className = 'btn btn-info';
+      btnBid.innerHTML = 'Lägg Bud';
+      btnBid.style = 'color: white';
+      cardBody.appendChild(btnBid);
+
+      var endBid = document.createElement('div');
+      endBid.className = 'card-footer';
+      endBid.innerHTML = 'Slutdatum: ' + auctions[i].endDate;
+      card.appendChild(endBid);
 
     }
 }
