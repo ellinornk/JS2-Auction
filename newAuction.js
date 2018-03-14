@@ -3,7 +3,7 @@
     method: 'POST',
     body: JSON.stringify({
       "AuktionID": 2,
-      "Titel": "Supercoola grejen",
+      "Titel": "Supercoola killen",
       "Beskrivning": "Asså den här grejen är supercool",
       "StartDatum":"2018-03-13T07:10:50.0063755+00:00",
       "SlutDatum":"2018-03-15T07:10:50.0063755+00:00",
