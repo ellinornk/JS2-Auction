@@ -5,26 +5,28 @@
 */
 
 
-function getJSONbid(){
-  var bidID =
-  var sum =
-  var auctionID =
-  JSONinput = "BudID"
-}
+Test();
 
-function newBid2(id){
-  console.log(id);
- fetch("http://nackowskis.azurewebsites.net/api/",{
-   method: 'POST',
-   body: JSON.stringify({
-     "BudID": 2,
-     "Summa":
-     "AuktionID": 2,),
-   headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'}
- })
-}
-/*
-function newBid(id){
- console.log(id);
-}
-*/
+       async function Test()
+       {
+           var bud = { "BudID": "0", "Summa": "1500", "AuktionID": "12" };
+            let  url = 'http://nackowskis.azurewebsites.net/api/bud/';
+            await postData(url, bud)
+         }
+
+
+async function postData(url, values) {
+
+           fetch(url,{
+               method: 'POST',
+               body: JSON.stringify(values),
+               headers: {
+                   'Accept': 'application/json, text/plain, */*',
+                   'Content-Type': 'application/json'
+               }
+
+           }).then(function (data) {
+               console.log('Request success: ', 'posten skapad');
+           })
+
+       }
