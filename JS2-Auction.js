@@ -23,8 +23,15 @@ function auctionObject(Title, Description, StartDate, EndDate, AuctionId){
 
 //SHOWDETAILINFORMATION
 function showInfo(className){
+  var button = document.getElementsByClassName('show-hide'+className);
   var elementToHide = document.getElementsByClassName(className);
-  elementToHide[0].classList.add("show");
+     if (elementToHide[0].style.display === "block") {
+        button[0].innerHTML = 'Visa info';
+        elementToHide[0].style.display = "none";
+    } else {
+        button[0].innerHTML = 'Dölj info';
+        elementToHide[0].style.display = "block";
+    }
 }
 
 //GET BIDS
@@ -100,7 +107,7 @@ function updateView(){
 
 
       var btnShowInfo = document.createElement('a');
-      btnShowInfo.className = 'btn btn-info';
+      btnShowInfo.className = 'btn btn-info show-hide'+activeAuctions[i].auctionId;
       btnShowInfo.innerHTML = 'Visa info';
       btnShowInfo.style = 'color: white';
       btnShowInfo.setAttribute('onclick', 'showInfo('+activeAuctions[i].auctionId+');')

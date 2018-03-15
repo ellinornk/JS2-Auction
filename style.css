@@ -1,5 +1,6 @@
 body{
 	background-color: #d6d6d6;
+	padding: 5rem 0 5rem 0;
 }
 
 .active{
@@ -11,9 +12,9 @@ body{
 }
 
 .hide{
-	visibility: hidden;
+	display: none;
 }
 
-.show{
-	visibility: visible;
+.input-group-append {
+    margin-left: 10px;
 }
