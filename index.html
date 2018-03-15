@@ -10,7 +10,7 @@
   <script> src="newAuction.js"</script>
   <script> src="showAuctions.js"</script>
   <script> src="JS2-Auction.js"</script>
-  <script> src="sort&search.js"</script>
+  <script> src="sort.js"</script>
   <script> src="bid.js"</script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -18,10 +18,11 @@
   <title>Auktion</title>
 </head>
 <body onload="startApp()">
-<!--   <div id="search">
+<div id="search">
     <input type="text" id="searchInput">
-    <input type="button" value="Klick" id="filter">
-  </div> -->
+    <input type="button" value="Sök" id="filter">
+    <input type="button" value="Sortera" id="sort" onclick="sortingData()">
+  </div>
   <div class="container">
     <div class="row">
       <div class="col-sm-2"></div>
