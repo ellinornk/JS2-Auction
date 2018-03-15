@@ -9,3 +9,11 @@ body{
 .card{
 	margin-top: 2rem;
 }
+
+.hide{
+	visibility: hidden;
+}
+
+.show{
+	visibility: visible;
+}
