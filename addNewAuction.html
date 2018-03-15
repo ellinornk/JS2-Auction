@@ -2,21 +2,27 @@
  <html>
    <head>
      <meta charset="utf-8">
-     <title></title>
+     <title>Admin</title>
      <script type="text/javascript" defer src="JS2-Auction.js"></script>
      <script type="text/javascript" defer src="newAuction.js"></script>
      <script type="text/javascript" defer src=""></script>
 
    </head>
    <body>
-       <input type="text" placeholder="Titel" id="adminTitel"><br>
-       <input type="text" placeholder="Beskrivning" id="adminBeskrivning"><br>
-       <p>Startdatum:</p>
-      <input type="date" id="adminStartDatum"><br>
-      <p>Slutdatum:</p>
-       <input type="date" id="adminSlutDatum"><br>
-       <input type="number" placeholder="Utropspris" id="adminUtropspris"><br>
-      <input type="submit" name="" value="New Auction" onclick="getNewAuction()">
+     <h1>Skapa auktion</h1>
+         <input type="text" placeholder="Titel" id="adminTitel"><br>
+         <input type="text" placeholder="Beskrivning" id="adminBeskrivning"><br>
+         <p>Startdatum:</p>
+         <input type="date" id="adminStartDatum"><br>
+         <p>Slutdatum:</p>
+         <input type="date" id="adminSlutDatum"><br>
+         <input type="number" placeholder="Utropspris" id="adminUtropspris"><br>
+         <input type="submit" value="Skapa" onclick="getNewAuction()">
+
+     <h1>Radera auktion</h1>
+        <input type="number" placeholder="Auction ID" id="adminAuctionId">
+        <input type="submit" onclick="deleteAuction()" value="Tabort">
+
 </body>
 
  </html>
