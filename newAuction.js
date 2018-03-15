@@ -29,6 +29,25 @@ function createNewAuction(titel,startDate,endDate,pris,beskrivning) {
       Utropspris: pris
     })
   }).then(function (data) {
-     console.log('Request success: ', 'posten skapad');
+     console.log('Request success: ', 'posten made');
+        })
+}
+
+
+
+//Delete function
+function deleteAuction(){
+  let inputAuctionId = document.getElementById("adminAuctionId").value;
+  deleteAnOldAuction(inputAuctionId);
+}
+function deleteAnOldAuction(id){
+  fetch("https://nackowskis.azurewebsites.net/api/auktion/500/" + id, {
+    method: "DELETE",
+    headers: {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    }
+  }).then(function (data) {
+     console.log('Request success: ', 'post deleted');
         })
 }
