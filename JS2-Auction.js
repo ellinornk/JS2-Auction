@@ -27,6 +27,11 @@ function newBid(id){
  console.log(id);
 }
 
+function showInfo(id){
+  getAuction(id);
+}
+
+
 //CLEAN THE DATA AND CREATE AUCTION OBJECTS FROM SOURCE
 async function FetchData(url){
   let promise = await fetch(url);
@@ -42,6 +47,34 @@ async function FetchData(url){
   }
   updateView();
 }
+
+//-----
+async function getAuction(id){
+  let myResponse = await FetchData2("http://nackowskis.azurewebsites.net/api/auktion/500/"+id);
+}
+
+async function FetchData2(url){
+  let promise = await fetch(url);
+  let data = await promise.json();
+  var auction = new auctionObject(data.Titel, data.Beskrivning, data.StartDatum, data.SlutDatum, data.AuktionID);
+  updateSingleView(auction);
+}
+
+function updateSingleView(auction){
+    console.log(auction);
+    var card = document.createElement('div');
+    card.className = 'card text-center';
+    var cardContainer = document.getElementById('cardContainer').appendChild(card);
+
+    var cardHeader = document.createElement('div');
+    cardHeader.className = 'card-header';
+    cardHeader.innerHTML = 'Startdatum: ' + auction.startDate;
+    card.appendChild(cardHeader);
+
+
+
+}
+//-----
 
 //UPDATE THE VIEW
 function updateView(){
@@ -80,10 +113,10 @@ function updateView(){
       cardBody.appendChild(currentBid);
 
       var btnBid = document.createElement('a');
-      btnBid.className = 'btn btn-success';
-      btnBid.innerHTML = 'Lägg Bud';
+      btnBid.className = 'btn btn-info';
+      btnBid.innerHTML = 'Visa info';
       btnBid.style = 'color: white';
-      btnBid.setAttribute('onclick', 'newBid('+activeAuctions[i].auctionId+');')
+      btnBid.setAttribute('onclick', 'showInfo('+activeAuctions[i].auctionId+');')
       cardBody.appendChild(btnBid);
 
       var endBid = document.createElement('div');
