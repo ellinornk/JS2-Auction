@@ -9,31 +9,14 @@
 
    </head>
    <body>
-     <form encrypt="application/JSON" class="" action="index.html" method="post">
-       <input name="AuktionID" value="1">
-       <input type="text" placeholder="Titel" id="titel">
-       <input type="text" placeholder="Beskrivning" id="beskrivning">
-       <input type="date" placeholder="Slutdatum" id="slutdatum">
-       <input type="text" placeholder="Utropspris" id="utropspris">
-        <input type="submit" name="" value="New Auction" onclick="jsonString()">
-     </form>
+       <input type="text" placeholder="Titel" id="adminTitel"><br>
+       <input type="text" placeholder="Beskrivning" id="adminBeskrivning"><br>
+       <p>Startdatum:</p>
+      <input type="date" id="adminStartDatum"><br>
+      <p>Slutdatum:</p>
+       <input type="date" id="adminSlutDatum"><br>
+       <input type="number" placeholder="Utropspris" id="adminUtropspris"><br>
+      <input type="submit" name="" value="New Auction" onclick="getNewAuction()">
 </body>
+
  </html>
-
-<!--
- function create(){
-  fetch("http://nackowskis.azurewebsites.net/api/auktion/",{
-    method: 'POST',
-    body: JSON.stringify({
-      "AuktionID": 1,
-      "Titel": "That thing",
-      "Beskrivning": "Jupp",
-      "StartDatum":"2018-03-13T07:10:50.0063755+00:00",
-      "SlutDatum":"2018-04-20T07:10:50.0063755+00:00",
-      "Gruppkod":500,
-      "Utropspris": 3000}),
-    headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'}
-  })
-}
-
--->

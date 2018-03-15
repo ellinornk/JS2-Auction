@@ -1,52 +1,34 @@
 
-getAuctionData();
+//Get information from inputs
+function getNewAuction() {
 
-       async function getAuctionData()
-       {
-         let today = new Date();
-         let beskrivning = document.getElementById("beskrivning").value;
-         let titel = document.getElementById("titel").value;
-         let slutdatum = document.getElementById("slutdatum").value;
-         let utropspris = document.getElementById("utropspris").value;
-            var auction = {"AuktionID": 1,
-                "Titel": titel,
-                "Beskrivning": beskrivning,
-                "StartDatum": today,
-                "SlutDatum":"2018-04-20T07:10:50.0063755+00:00",
-                "Gruppkod":500,
-                "Utropspris": utropspris};
-            let  url = 'http://nackowskis.azurewebsites.net/api/bud/';
-            await postAuctionData(url, auction)
-         }
+    let titelInput = document.getElementById("adminTitel").value;
+    let startDatumInput = document.getElementById("adminStartDatum").value;
+    let slutDatumInput = document.getElementById("adminSlutDatum").value;
+    let prisInput = document.getElementById("adminUtropspris").value;
+    let beskrivningInput = document.getElementById("adminBeskrivning").value;
 
+    createNewAuction(titelInput,startDatumInput,slutDatumInput,prisInput,beskrivningInput);
+}
 
-async function postAuctionData(url, values) {
-
-           fetch(url,{
-               method: 'POST',
-               body: JSON.stringify(values),
-               headers: {
-                   'Accept': 'application/json, text/plain, */*',
-                   'Content-Type': 'application/json'
-               }
-
-           }).then(function (data) {
-               console.log('Request success: ', 'posten skapad');
-           })
-
-       }
-/*
- function create(){
-  fetch("http://nackowskis.azurewebsites.net/api/auktion/",{
-    method: 'POST',
+//Creates a new auction from the input from getNewAuction
+function createNewAuction(titel,startDate,endDate,pris,beskrivning) {
+  fetch("https://nackowskis.azurewebsites.net/api/auktion/500/", {
+    method: "POST",
+    headers: {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
-      "AuktionID": 1,
-      "Titel": "That thing",
-      "Beskrivning": "Jupp",
-      "StartDatum":"2018-03-13T07:10:50.0063755+00:00",
-      "SlutDatum":"2018-04-20T07:10:50.0063755+00:00",
-      "Gruppkod":500,
-      "Utropspris": 3000}),   */
-//    headers: {'Accept': 'application/json, text/plain, */*','Content-Type': 'application/json'}
-//  })
-//}
+      AuktionID: 1,
+      Beskrivning: beskrivning,
+      Gruppkod: 500,
+      SlutDatum: endDate + "T00:00:00",
+      StartDatum: startDate + "T00:00:00",
+      Titel: titel,
+      Utropspris: pris
+    })
+  }).then(function (data) {
+     console.log('Request success: ', 'posten skapad');
+        })
+}
