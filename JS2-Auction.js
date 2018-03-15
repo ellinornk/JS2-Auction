@@ -1,6 +1,7 @@
 
 //VARIABLES
-var auctions = [];
+var allAuctions = [];
+var activeAuctions = [];
 
 //START THE APPLICATION
 function startApp(){
@@ -30,25 +31,28 @@ function newBid(id){
 async function FetchData(url){
   let promise = await fetch(url);
   let data = await promise.json();
-  console.log(data);
   for (var i in data) {
     var auction = new auctionObject(data[i].Titel, data[i].Beskrivning, data[i].StartDatum, data[i].SlutDatum, data[i].AuktionID);
-    auctions.push(auction);
+    allAuctions.push(auction);
+    var auctionEndDate = new Date(data[i].SlutDatum);
+    var currentDate = new Date();
+    if(auctionEndDate > currentDate){
+      activeAuctions.push(auction);
+    }
   }
   updateView();
 }
 
 //UPDATE THE VIEW
 function updateView(){
-  console.log(auctions);
-    for(var i=0; i < auctions.length; i++){
+    for(var i=0; i < activeAuctions.length; i++){
       var card = document.createElement('div');
       card.className = 'card text-center';
       var cardContainer = document.getElementById('cardContainer').appendChild(card);
 
       var cardHeader = document.createElement('div');
       cardHeader.className = 'card-header';
-      cardHeader.innerHTML = 'Startdatum: ' + auctions[i].startDate;
+      cardHeader.innerHTML = 'Startdatum: ' + activeAuctions[i].startDate;
       card.appendChild(cardHeader);
 
       var cardBody = document.createElement('div');
@@ -57,12 +61,12 @@ function updateView(){
 
       var cardTitle = document.createElement('h5');
       cardTitle.className = 'card-title';
-      cardTitle.innerHTML = auctions[i].title;
+      cardTitle.innerHTML = activeAuctions[i].title;
       cardBody.appendChild(cardTitle);
 
       var description = document.createElement('p');
       description.className = 'card-text';
-      description.innerHTML = auctions[i].description;
+      description.innerHTML = activeAuctions[i].description;
       cardBody.appendChild(description);
 
       var firstBid = document.createElement('p');
@@ -79,12 +83,12 @@ function updateView(){
       btnBid.className = 'btn btn-success';
       btnBid.innerHTML = 'Lägg Bud';
       btnBid.style = 'color: white';
-      btnBid.setAttribute('onclick', 'newBid('+auctions[i].auctionId+');')
+      btnBid.setAttribute('onclick', 'newBid('+activeAuctions[i].auctionId+');')
       cardBody.appendChild(btnBid);
 
       var endBid = document.createElement('div');
       endBid.className = 'card-footer';
-      endBid.innerHTML = 'Slutdatum: ' + auctions[i].endDate;
+      endBid.innerHTML = 'Slutdatum: ' + activeAuctions[i].endDate;
       card.appendChild(endBid);
 
     }
