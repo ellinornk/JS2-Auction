@@ -37,7 +37,9 @@ function showInfo(className){
 //GET BIDS
 async function getBids(id){
   let myResponse = await FetchDataBids("http://nackowskis.azurewebsites.net/api/Bud/500/"+id);
-  return myResponse;
+  var sorteredBids = myResponse.sort(function(a, b){return b.Summa-a.Summa});
+
+  return sorteredBids;
 }
 
 //FETCH BIDS
@@ -119,22 +121,21 @@ function updateView(){
       cardBody.appendChild(hiddenDiv);
 
       var firstBid = document.createElement('p');
-      firstBid.className = 'card-text';
+      firstBid.className = 'card-text firstBid';
       firstBid.innerHTML = 'Utropspris: 500:-';
       hiddenDiv.appendChild(firstBid);
 
+      var bidList = document.createElement('ul');
+      bidList.className = "list-group";
+      hiddenDiv.appendChild(bidList);
       
       for(var b=0; b < activeAuctions[i].bids.length; b++){
         var node = document.createElement("li");
-        var textnode = document.createTextNode(activeAuctions[i].bids[b].Summa);
-        node.appendChild(textnode); 
-        hiddenDiv.appendChild(node);
+        var textnode = document.createTextNode(activeAuctions[i].bids[b].Summa+":-");
+        node.appendChild(textnode);
+        node.className = "list-group-item"; 
+        bidList.appendChild(node);
 
-        // console.log(activeAuctions[i].bids[b].Summa);
-        // var currentBid = document.createElement('p');
-        // currentBid.className = 'card-text';
-        // currentBid.innerHTML = activeAuctions[i].bids[b].Summa;
-        // hiddenDiv.appendChild(currentBid);
       }
 
       var currentBidinput = document.createElement('input');
