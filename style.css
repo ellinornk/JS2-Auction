@@ -1,5 +1,6 @@
 body{
 	background-color: #d6d6d6;
+	padding: 5rem 0 5rem 0;
 }
 
 .active{
@@ -8,4 +9,12 @@ body{
 
 .card{
 	margin-top: 2rem;
+}
+
+.hide{
+	display: none;
+}
+
+.input-group-append {
+    margin-left: 10px;
 }
