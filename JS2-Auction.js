@@ -11,12 +11,13 @@ function startApp(){
 }
 
 //CREATE AUCTION OBJECT
-function auctionObject(Title, Description, StartDate, EndDate, AuctionId){
+function auctionObject(Title, Description, StartDate, EndDate, AuctionId, StartBid){
   this.title = Title;
   this.description = Description;
   this.startDate = StartDate;
   this.endDate = EndDate;
   this.auctionId = AuctionId;
+  this.startBid = StartBid;
   this.bids = [0, 0];
 }
 
@@ -63,7 +64,7 @@ async function FetchData(url){
 async function getData(){
   let data = await FetchData("http://nackowskis.azurewebsites.net/api/Auktion/500/");
     for (var i in data) {
-    var auction = new auctionObject(data[i].Titel, data[i].Beskrivning, data[i].StartDatum, data[i].SlutDatum, data[i].AuktionID);
+    var auction = new auctionObject(data[i].Titel, data[i].Beskrivning, data[i].StartDatum, data[i].SlutDatum, data[i].AuktionID, data[i].Utropspris);
     allAuctions.push(auction);
     var auctionEndDate = new Date(data[i].SlutDatum);
     var currentDate = new Date();
@@ -122,7 +123,7 @@ function updateView(){
 
       var firstBid = document.createElement('p');
       firstBid.className = 'card-text firstBid';
-      firstBid.innerHTML = 'Utropspris: 500:-';
+      firstBid.innerHTML = 'Utropspris: '+activeAuctions[i].startBid+':-';
       hiddenDiv.appendChild(firstBid);
 
       var bidList = document.createElement('ul');
