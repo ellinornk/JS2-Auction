@@ -51,3 +51,21 @@ function deleteAnOldAuction(id){
      console.log('Request success: ', 'post deleted');
         })
 }
+
+
+//Delete BID
+function deleteBid(){
+  let inputAuctionId = document.getElementById("adminBidID").value;
+  deleteTheBid(inputAuctionId);
+}
+function deleteTheBid(id){
+  fetch("http://nackowskis.azurewebsites.net/api/bud/500/" + id, {
+    method: "DELETE",
+    headers: {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    }
+  }).then(function (data) {
+     console.log('Request success: ', 'bid deleted');
+        })
+}
