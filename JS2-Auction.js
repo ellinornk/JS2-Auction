@@ -85,12 +85,17 @@ updateView();
 function updateView(){
     for(var i=0; i < activeAuctions.length; i++){
 
-      var card = document.createElement('div');
-      card.className = 'card text-center';
+        var card = document.createElement('div');
+        card.className = 'card';
       var cardContainer = document.getElementById('cardContainer').appendChild(card);
+       
+       var cardImage = document.createElement('img');
+       cardImage.className = "card-img-top";
+       cardImage.src = "http://static-cdn.citiboard.se/545/img/responsive/no-picture.png";
+       card.appendChild(cardImage);
 
-      var cardHeader = document.createElement('div');
-      cardHeader.className = 'card-header';
+      var cardHeader = document.createElement('label');
+      cardHeader.className = '';
       var startDate = new Date(activeAuctions[i].startDate); 
       cardHeader.innerHTML = 'Startdatum: ' + startDate.getFullYear()+'-'+(startDate.getMonth()+1)+'-'+startDate.getDate();
       card.appendChild(cardHeader);
@@ -98,6 +103,9 @@ function updateView(){
       var cardBody = document.createElement('div');
       cardBody.className = "card-body";
       card.appendChild(cardBody);
+
+
+
 
       var cardTitle = document.createElement('h5');
       cardTitle.className = 'card-title';
@@ -142,7 +150,7 @@ function updateView(){
 
       var currentBidinput = document.createElement('input');
       currentBidinput.className = 'class="form-control"';
-      currentBidinput.innerHTML = 'Ange bud';
+      currentBidinput.placeholder = 'Ange bud';
       currentBidinput.id = activeAuctions[i].auctionId;
       hiddenDiv.appendChild(currentBidinput);
 
@@ -153,11 +161,11 @@ function updateView(){
       btnBid.setAttribute('onclick', 'createBid('+activeAuctions[i].auctionId+');')
       hiddenDiv.appendChild(btnBid);
 //-----
-      var endBid = document.createElement('div');
-      endBid.className = 'card-footer';
-      var endDate = new Date(activeAuctions[i].endDate);
-      endBid.innerHTML = 'Slutdatum: ' + endDate.getFullYear()+'-'+(endDate.getMonth()+1)+'-'+endDate.getDate();
-      card.appendChild(endBid);
+      // var endBid = document.createElement('div');
+      // endBid.className = 'card-footer';
+      // var endDate = new Date(activeAuctions[i].endDate);
+      // endBid.innerHTML = 'Slutdatum: ' + endDate.getFullYear()+'-'+(endDate.getMonth()+1)+'-'+endDate.getDate();
+      // card.appendChild(endBid);
 
     }
 }
