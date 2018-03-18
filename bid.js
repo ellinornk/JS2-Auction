@@ -17,7 +17,6 @@ createBid();
                     alert('Budet måste vara högre än utropspriset!');
                   }
                   else{
-                    console.log(3);
                   var bud = { "BudID": "0", "Summa": value, "AuktionID": id };
                   let  url = 'http://nackowskis.azurewebsites.net/api/bud/';
                   await postData(url, bud)
@@ -32,7 +31,6 @@ createBid();
                     alert('Budet måste vara högre än senast lagda bud!');
                   }
                   else{
-                    console.log(6);
                   var bud = { "BudID": "0", "Summa": value, "AuktionID": id };
                   let  url = 'http://nackowskis.azurewebsites.net/api/bud/';
                   await postData(url, bud)

@@ -91,7 +91,8 @@ function updateView(){
 
       var cardHeader = document.createElement('div');
       cardHeader.className = 'card-header';
-      cardHeader.innerHTML = 'Startdatum: ' + activeAuctions[i].startDate;
+      var startDate = new Date(activeAuctions[i].startDate); 
+      cardHeader.innerHTML = 'Startdatum: ' + startDate.getFullYear()+'-'+(startDate.getMonth()+1)+'-'+startDate.getDate();
       card.appendChild(cardHeader);
 
       var cardBody = document.createElement('div');
@@ -154,7 +155,8 @@ function updateView(){
 //-----
       var endBid = document.createElement('div');
       endBid.className = 'card-footer';
-      endBid.innerHTML = 'Slutdatum: ' + activeAuctions[i].endDate;
+      var endDate = new Date(activeAuctions[i].endDate);
+      endBid.innerHTML = 'Slutdatum: ' + endDate.getFullYear()+'-'+(endDate.getMonth()+1)+'-'+endDate.getDate();
       card.appendChild(endBid);
 
     }
