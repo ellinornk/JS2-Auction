@@ -11,12 +11,13 @@ function startApp(){
 }
 
 //CREATE AUCTION OBJECT
-function auctionObject(Title, Description, StartDate, EndDate, AuctionId){
+function auctionObject(Title, Description, StartDate, EndDate, AuctionId, StartBid){
   this.title = Title;
   this.description = Description;
   this.startDate = StartDate;
   this.endDate = EndDate;
   this.auctionId = AuctionId;
+  this.startBid = StartBid;
   this.bids = [0, 0];
 }
 
@@ -37,7 +38,9 @@ function showInfo(className){
 //GET BIDS
 async function getBids(id){
   let myResponse = await FetchDataBids("http://nackowskis.azurewebsites.net/api/Bud/500/"+id);
-  return myResponse;
+  var sorteredBids = myResponse.sort(function(a, b){return b.Summa-a.Summa});
+
+  return sorteredBids;
 }
 
 //FETCH BIDS
@@ -61,7 +64,7 @@ async function FetchData(url){
 async function getData(){
   let data = await FetchData("http://nackowskis.azurewebsites.net/api/Auktion/500/");
     for (var i in data) {
-    var auction = new auctionObject(data[i].Titel, data[i].Beskrivning, data[i].StartDatum, data[i].SlutDatum, data[i].AuktionID);
+    var auction = new auctionObject(data[i].Titel, data[i].Beskrivning, data[i].StartDatum, data[i].SlutDatum, data[i].AuktionID, data[i].Utropspris);
     allAuctions.push(auction);
     var auctionEndDate = new Date(data[i].SlutDatum);
     var currentDate = new Date();
@@ -88,7 +91,8 @@ function updateView(){
 
       var cardHeader = document.createElement('div');
       cardHeader.className = 'card-header';
-      cardHeader.innerHTML = 'Startdatum: ' + activeAuctions[i].startDate;
+      var startDate = new Date(activeAuctions[i].startDate); 
+      cardHeader.innerHTML = 'Startdatum: ' + startDate.getFullYear()+'-'+(startDate.getMonth()+1)+'-'+startDate.getDate();
       card.appendChild(cardHeader);
 
       var cardBody = document.createElement('div');
@@ -119,22 +123,21 @@ function updateView(){
       cardBody.appendChild(hiddenDiv);
 
       var firstBid = document.createElement('p');
-      firstBid.className = 'card-text';
-      firstBid.innerHTML = 'Utropspris: 500:-';
+      firstBid.className = 'card-text firstBid';
+      firstBid.innerHTML = 'Utropspris: '+activeAuctions[i].startBid+':-';
       hiddenDiv.appendChild(firstBid);
 
+      var bidList = document.createElement('ul');
+      bidList.className = "list-group";
+      hiddenDiv.appendChild(bidList);
       
       for(var b=0; b < activeAuctions[i].bids.length; b++){
         var node = document.createElement("li");
-        var textnode = document.createTextNode(activeAuctions[i].bids[b].Summa);
-        node.appendChild(textnode); 
-        hiddenDiv.appendChild(node);
+        var textnode = document.createTextNode(activeAuctions[i].bids[b].Summa+":-");
+        node.appendChild(textnode);
+        node.className = "list-group-item"; 
+        bidList.appendChild(node);
 
-        // console.log(activeAuctions[i].bids[b].Summa);
-        // var currentBid = document.createElement('p');
-        // currentBid.className = 'card-text';
-        // currentBid.innerHTML = activeAuctions[i].bids[b].Summa;
-        // hiddenDiv.appendChild(currentBid);
       }
 
       var currentBidinput = document.createElement('input');
@@ -152,7 +155,8 @@ function updateView(){
 //-----
       var endBid = document.createElement('div');
       endBid.className = 'card-footer';
-      endBid.innerHTML = 'Slutdatum: ' + activeAuctions[i].endDate;
+      var endDate = new Date(activeAuctions[i].endDate);
+      endBid.innerHTML = 'Slutdatum: ' + endDate.getFullYear()+'-'+(endDate.getMonth()+1)+'-'+endDate.getDate();
       card.appendChild(endBid);
 
     }
