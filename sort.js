@@ -1,7 +1,6 @@
 //Sortera på Utropspris
 sortByPrice();
 async function sortByPrice(){
-
   let response = await fetchingData("http://nackowskis.azurewebsites.net/api/auktion/500");
   let sorted = response.sort((a,b) => a.Utropspris > b.Utropspris);
   console.log(sorted);

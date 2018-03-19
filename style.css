@@ -1,18 +1,44 @@
 body{
-	background-color: #d6d6d6;
+	background-color: #e2e1e0;
 	padding: 5rem 0 5rem 0;
+}
+
+label{
+	font-size: 14px;
+  margin: 5px;
+  text-align: center;
+  color: #848484;
+}
+
+.firstBid{
+	font-weight: bold;
+	margin-top: 15px;
+}
+
+.card input{
+	margin: 25px;
 }
 
 .active{
 	color: green;
 }
 
+#cardContainer{
+	padding: 0 75px;
+}
+
 .card{
 	margin-top: 2rem;
+	width: 300px;
+	float: left;
+	margin: 15px;
+	min-height: 485px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .hide{
 	display: none;
+	text-align: center;
 }
 
 .input-group-append {
