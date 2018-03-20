@@ -1,7 +1,6 @@
 //Sortera på Utropspris
 
 async function sortByPrice(){
-
 	let sortedAllByPrice = allAuctions.sort((a,b) => a.startBid < b.startBid);
   var myNode = document.getElementById("cardContainer");
 	while (myNode.firstChild) {
