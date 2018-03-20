@@ -1,16 +1,22 @@
 //Sortera på Utropspris
-sortByPrice();
+
 async function sortByPrice(){
-  let response = await fetchingData("http://nackowskis.azurewebsites.net/api/auktion/500");
-  let sorted = response.sort((a,b) => a.Utropspris < b.Utropspris);
-  console.log(sorted);
+
+	let sortedAllByPrice = allAuctions.sort((a,b) => a.startBid < b.startBid);
+  var myNode = document.getElementById("cardContainer");
+	while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+	}
+	updateView(sortedAllByPrice);
 }
 //Sortera på Slutdatum
-sortByDate();
 async function sortByDate(){
-  let response = await fetchingData("http://nackowskis.azurewebsites.net/api/auktion/500");
-  let sorted = response.sort((a,b) => a.SlutDatum < b.SlutDatum);
-  console.log(sorted);
+  let sortedAllByDate = allAuctions.sort((a,b) => a.endDate < b.endDate);
+  var myNode = document.getElementById("cardContainer");
+	while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+	}
+	updateView(sortedAllByDate);
 }
 
 async function fetchingData(url){
@@ -18,3 +24,5 @@ async function fetchingData(url){
   let data = await promise.json();
   return data;
 }
+
+

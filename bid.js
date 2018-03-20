@@ -25,8 +25,6 @@ createBid();
                   }
                 }
                 else{
-                  console.log('value= '+value);
-                  console.log('Senast bud= '+activeAuctions[i].bids[0].Summa);
                   if (value <= activeAuctions[i].bids[0].Summa){
                     alert('Budet måste vara högre än senast lagda bud!');
                   }
