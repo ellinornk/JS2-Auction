@@ -1,23 +1,52 @@
 body{
-	background-color: #d6d6d6;
+	background-color: #e2e1e0;
 	padding: 5rem 0 5rem 0;
 }
 
+label{
+	margin: 0px;
+	font-size: 14px;
+  text-align: center;
+  color: #848484;
+}
+
+img{
+	margin-bottom: 5px;
+}
+
+.active{
+	color: white;
+	background-color: #009900; 
+}
+.inactive{
+	color: white;
+	background-color: red; 
+}
 .firstBid{
 	font-weight: bold;
 	margin-top: 15px;
 }
 
-.active{
-	color: green;
+.card input{
+	margin: 25px;
+}
+
+#cardContainer{
+	padding: 0 75px;
 }
 
 .card{
 	margin-top: 2rem;
+	width: 300px;
+	float: left;
+	margin: 15px;
+	min-height: 550px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .hide{
 	display: none;
+	text-align: center;
 }
 
 .input-group-append {
